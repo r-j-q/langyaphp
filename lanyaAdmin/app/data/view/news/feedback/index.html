@@ -1,0 +1,89 @@
+{extend name="../../admin/view/main"}
+
+{block name='content'}
+<div class="think-box-shadow">
+    {include file='news/feedback/index_search'}
+    <table class="layui-table margin-top-10" lay-skin="line">
+        {notempty name='list'}
+        <thead>
+        <tr>
+            <th class='list-table-check-td think-checkbox'>
+                <label><input data-auto-none data-check-target='.list-check-box' type='checkbox'></label>
+            </th>
+            <!-- <th class='list-table-sort-td'>
+                <button class="layui-btn layui-btn-xs" data-reload type="button">刷 新</button>
+            </th> -->
+            <th class="text-left nowrap">用户昵称</th>
+            <th class="text-left nowrap">产品</th>
+            <th class="text-left nowrap">软件和服务</th>
+            <th class="text-left nowrap">镜片和应用</th>
+            <th class="text-left nowrap">意见建议</th>
+            <th class="text-left nowrap">创建时间</th>
+            {if(0)}<th class="text-left nowrap"></th>{/if}
+        </tr>
+        </thead>
+        {/notempty}
+        <tbody>
+        {foreach $list as $key=>$vo}
+        <tr data-dbclick>
+            <td class='list-table-check-td think-checkbox'>
+                <label><input class="list-check-box" type='checkbox' value='{$vo.id}'></label>
+            </td>
+            <!-- <td class='list-table-sort-td'>
+                <label><input class="list-sort-input" data-action-blur="{:request()->url()}" data-loading="false" data-value="id#{$vo.id};action#sort;sort#{value}" value="{$vo.sort|default='0'}"></label>
+            </td> -->
+            <td class="text-left nowrap">{$vo.nickname|default=''}</td>
+            <td class="text-left nowrap">
+                <div class="inline-block">
+                    <div>产品款式：<span class="color-{$vo.kuanshi ? 'green':'red'}">{$vo.kuanshi ? '满意':'不满意'}</span></div>
+                    <div>产品设计：<span class="color-{$vo.sheji ? 'green':'red'}">{$vo.sheji ? '满意':'不满意'}</span></div>
+                    <div>产品包装：<span class="color-{$vo.baozhuang ? 'green':'red'}">{$vo.baozhuang ? '满意':'不满意'}</span></div>
+                    <div>产品价格：<span class="color-{$vo.jiage ? 'green':'red'}">{$vo.jiage ? '满意':'不满意'}</span></div>
+                </div>
+            </td>
+            <td class="text-left nowrap">
+                <div class="inline-block">
+                    <div>软件界面：<span class="color-{$vo.jiemian ? 'green':'red'}">{$vo.jiemian ? '满意':'不满意'}</span></div>
+                    <div>软件功能：<span class="color-{$vo.gongneng ? 'green':'red'}">{$vo.gongneng ? '满意':'不满意'}</span></div>
+                    <div>服务态度：<span class="color-{$vo.taidu ? 'green':'red'}">{$vo.taidu ? '满意':'不满意'}</span></div>
+                    <div>服务专业性：<span class="color-{$vo.zhuanyexing?'green':'red'}">{$vo.zhuanyexing ? '满意':'不满意'}</span></div>
+                </div>
+            </td>
+            <td class="text-left nowrap">
+                <div class="inline-block">
+                    <div>想要的镜片：<span class="color-text">{$vo.jingpian.name|default=''}</span></div>
+                    <div>想要的应用功能：<span class="color-text">{$vo.yingyong.name|default=''}</span></div>
+                </div>
+            </td>
+            <td class="text-left">{$vo.remark|default=''}</td>
+            <td class="text-left nowrap">{$vo.create_at|format_datetime}</td>
+            {if(0)}
+            <td class='text-left nowrap'>
+                <!--{if auth("edit")}-->
+                <a class="layui-btn layui-btn-sm" data-dbclick data-modal="{:url('edit')}?id={$vo.id}" data-title="回复{$vo.nickname|default=''}" data-width="500px">回 复</a>
+                <!--{/if}-->
+
+                <!--{if auth("state") and $vo.status eq 1}-->
+                <a class="layui-btn layui-btn-sm layui-btn-warm" data-action="{:url('state')}" data-value="id#{$vo.id};status#0">无 效</a>
+                <!--{/if}-->
+
+                <!--{if auth("state") and $vo.status eq 0}-->
+                <a class="layui-btn layui-btn-sm layui-btn-warm" data-action="{:url('state')}" data-value="id#{$vo.id};status#1">正 常</a>
+                <!--{/if}-->
+
+                <!--{if auth("remove")}-->
+                <a class="layui-btn layui-btn-sm layui-btn-danger" data-action="{:url('remove')}" data-confirm="确定要删除该标签吗？" data-value="id#{$vo.id}">删 除</a>
+                <!--{/if}-->
+            </td>
+            {/if}
+        </tr>
+        {/foreach}
+        </tbody>
+    </table>
+    {empty name='list'}<span class="notdata">没有记录哦</span>{else}{$pagehtml|raw|default=''}{/empty}
+</div>
+{/block}
+
+{block name='script'}
+<script>window.form.render()</script>
+{/block}

@@ -1,0 +1,5 @@
+[2023-05-10 11:26:29][error] [10501]SQLSTATE[HY000] [1045] Access denied for user 'root'@'localhost' (using password: YES)[/www/wwwroot/yj.shningmi.com/vendor/topthink/think-orm/src/db/PDOConnection.php:796]
+[2023-05-12 18:07:57][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'deleted' in 'where clause'[/www/wwwroot/yj.shningmi.com/vendor/topthink/think-orm/src/db/PDOConnection.php:796]
+[2023-05-12 18:09:08][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sort' in 'order clause'[/www/wwwroot/yj.shningmi.com/vendor/topthink/think-orm/src/db/PDOConnection.php:796]
+[2023-05-12 18:09:09][error] [10501]SQLSTATE[42S22]: Column not found: 1054 Unknown column 'sort' in 'order clause'[/www/wwwroot/yj.shningmi.com/vendor/topthink/think-orm/src/db/PDOConnection.php:796]
+[2023-05-15 15:20:51][error] [0]语法错误: unexpected 'foreach' (T_FOREACH)[/www/wwwroot/yj.shningmi.com/app/data/model/DataFeedback.php:25]
